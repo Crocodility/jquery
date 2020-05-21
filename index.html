@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link link rel="stylesheet" type="text/css" href="index.js">
+    <title>jQuery</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font: 13px Helvetica, Arial; }
+        div { font-size: 60px; text-align: center;}
+        form { background: #273746; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+        form input { border: 0; padding: 10px; width: 90%; margin-right: 0.5%; }
+        form button { width: 9%; background: #85C1E9; border: none; padding: 10px; }
+        #messages { list-style-type: none; margin: 0; padding: 0; }
+        #messages li { padding: 5px 10px; }
+        #messages li:nth-child(odd) { background: #00FFCC; }
+    </style>
+    </head>
+<body>
+       <ul id="messages"></ul>
+    <form action="">
+      <input type='text' id="m" autocomplete="off" />
+      <button type="button" class="btn btn-outline-primary">Send</button>
+    </form>
+    <div id='info'>Это старый текст.</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready (function () {    
+        $('button').click (function() {    
+            $.ajax({
+                url: 'ajax_load.txt',
+                async: false,
+                type: 'GET',
+                datatype: 'html',
+                success: function (res) {
+                    $('#info').html(res);
+                },
+                error: function (res) {
+                    alert(res)
+                }});
+        });
+    });
+</script>
+</body>
+</html>
